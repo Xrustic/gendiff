@@ -22,8 +22,7 @@ def print_diff(diff_tree: dict):
 
 
 def create_difference_tree(path1, path2):
-    file1 = json.load(open(path1))
-    file2 = json.load(open(path2))
+    file1, file2 = json.load(open(path1)), json.load(open(path2))
     keys = sorted(file1.keys() | file2.keys())
     result = {}
     for key in keys:

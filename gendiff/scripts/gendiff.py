@@ -40,9 +40,9 @@ def create_difference_tree(path1, path2):
 
         elif file1[key] != file2[key]:
             result[key] = {
-                    'type': '-',
-                    'old_value': file1[key],
-                    'new_value': file2[key]
+                'type': '-',
+                'old_value': file1[key],
+                'new_value': file2[key]
             }
         else:
             result[key] = {'type': '+', 'value': file1[key]}

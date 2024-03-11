@@ -5,10 +5,10 @@ import json
 
 def generate_diff(path1, path2):
     diff_tree = create_difference_tree(path1, path2)
-    print_diff(diff_tree)
+    return str(print_diff(diff_tree))
 
 
-def print_diff(diff_tree: dict):
+def print_diff(diff_tree: dict) -> str:
     result = '{\n'
     for key, value in diff_tree.items():
         if 'value' in value:
@@ -18,11 +18,13 @@ def print_diff(diff_tree: dict):
             result += '  - ' + key + ': ' + str(value['old_value']) + '\n'
             result += '  + ' + key + ': ' + str(value['new_value']) + '\n'
     result += '}'
-    print(result)
+    result = result.lower()
+    return result
 
 
 def create_difference_tree(path1, path2):
-    file1, file2 = json.load(open(path1)), json.load(open(path2))
+    file1 = json.load(open(path1))
+    file2 = json.load(open(path2))
     keys = sorted(file1.keys() | file2.keys())
     result = {}
     for key in keys:
@@ -30,21 +32,19 @@ def create_difference_tree(path1, path2):
             result[key] = {'type': '-', 'value': file1[key]}
         elif key not in file1:
             result[key] = {'type': '+', 'value': file2[key]}
-
+        elif file1[key] == file2[key]:
+            result[key] = {'type': ' ', 'value': file1[key]}
         elif isinstance(file1[key], dict) and isinstance(file2[key], dict):
             result[key] = {
                 'type': '+',
                 'value': create_difference_tree(file1[key], file2[key])
             }
-
-        elif file1[key] != file2[key]:
+        else:
             result[key] = {
                 'type': '-',
                 'old_value': file1[key],
                 'new_value': file2[key]
             }
-        else:
-            result[key] = {'type': '+', 'value': file1[key]}
     return result
 
 

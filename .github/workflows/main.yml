@@ -6,10 +6,11 @@ on:
 jobs:
   push:
     steps:
-      - name: Test and publish codecov
-        uses: tests/fixtures/gendiff_test
-        env:
-          CC_TEST_REPORTER_ID: ${{secrets.CC_TEST_REPORTER_ID}}
-        with:
-          coverageCommand: make coverage
-          debug: true
+      jobs:
+        - name: Test and publish codecov
+          uses: tests/fixtures/gendiff_test
+          env:
+            CC_TEST_REPORTER_ID: ${{secrets.CC_TEST_REPORTER_ID}}
+          with:
+            coverageCommand: make coverage
+            debug: true

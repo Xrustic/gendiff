@@ -7,9 +7,9 @@ jobs:
   push:
     runs-on: ubuntu-latest
     steps:
-      - uses: tests/fixtures/gendiff_test@v2
+      - uses: tests/fixtures/gendiff_test@v4
       - name: Test and publish codecov
-        uses: tests/fixtures/gendiff_test@v2
+        uses: tests/fixtures/gendiff_test@v4
         env:
           CC_TEST_REPORTER_ID: ${{secrets.CC_TEST_REPORTER_ID}}
         with:

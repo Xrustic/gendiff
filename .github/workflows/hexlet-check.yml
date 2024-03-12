@@ -23,7 +23,6 @@ jobs:
         with:
           hexlet-id: ${{ secrets.HEXLET_ID }}
 
-jobs:
   push:
     jobs:
       - name: Test and publish codecov

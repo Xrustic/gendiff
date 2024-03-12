@@ -7,9 +7,9 @@ jobs:
   push:
     runs-on: ubuntu-latest
     steps:
-      - uses: gendiff_test@v4
+      - uses: actions/checkout@v4
       - name: Test and publish codecov
-        uses: gendiff_test@v4
+        run: python3 tests/fixtures/gendiff_test.py
         env:
           CC_TEST_REPORTER_ID: ${{secrets.CC_TEST_REPORTER_ID}}
         with:

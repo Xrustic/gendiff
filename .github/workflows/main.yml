@@ -2,11 +2,10 @@ name: main
 
 on:
   - push
-  - pull_request
 
 jobs:
   push:
-    jobs:
+    steps:
       - name: Test and publish codecov
         uses: tests/fixtures/gendiff_test
         env:

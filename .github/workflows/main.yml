@@ -10,8 +10,6 @@ jobs:
       - uses: tests/fixtures/gendiff_test@v2
       - name: Test and publish codecov
         uses: tests/fixtures/gendiff_test@v2
-        with:
-          python-version: 3.9
         env:
           CC_TEST_REPORTER_ID: ${{secrets.CC_TEST_REPORTER_ID}}
         with:

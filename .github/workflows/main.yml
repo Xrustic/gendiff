@@ -6,7 +6,19 @@ on:
 jobs:
   push:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: 3.9
     steps:
       - uses: actions/checkout@v4
+
+      - name: check linter
+        run: make lint
+
       - name: Test and publish codecov
-        run: python3 tests/fixtures/gendiff_test.py
+        uses: python3 tests/fixtures/gendiff_test.py
+        env:
+          CC_TEST_REPORTER_ID: ${{secrets.CC_TEST_REPORTER_ID}}
+        with:
+          coverageCommand: make coverage
+          debug: true

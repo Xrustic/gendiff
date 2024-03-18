@@ -26,9 +26,9 @@ jobs:
         run: make lint
 
       - name: checking coverage
-        uses: paambaati/codeclimate-action@v3.2.0
+        uses: paambaati/codeclimate-action@v5.0.0
         env:
-          CC_TEST_REPORTER_ID: 624adb2e1242693bee7197b465fbadc3c9cfd58eaccdc1c10e52d5b1810ac05d
+          CC_TEST_REPORTER_ID: ${{secrets.CC_TEST_REPORTER_ID}}
         with:
           coverageCommand: make test-coverage
           debug: true

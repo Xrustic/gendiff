@@ -1,6 +1,17 @@
 #!/usr/bin/env python3
 import argparse
-import json
+import os
+from .parser import parse_data
+
+
+def get_extension(file_path):
+    extension = os.path.splitext(file_path)[1]
+    return extension[1:]
+
+
+def get_file_data(file_path):
+    with open(file_path) as file:
+        return parse_data(file, get_extension(file_path))
 
 
 def generate_diff(path1, path2):
@@ -19,12 +30,13 @@ def print_diff(diff_tree: dict) -> str:
             result += '  + ' + key + ': ' + str(value['new_value']) + '\n'
     result += '}'
     result = result.lower()
+    print(result)
     return result
 
 
 def create_difference_tree(path1, path2):
-    file1 = json.load(open(path1))
-    file2 = json.load(open(path2))
+    file1 = get_file_data(path1)
+    file2 = get_file_data(path2)
     keys = sorted(file1.keys() | file2.keys())
     result = {}
     for key in keys:
@@ -36,14 +48,14 @@ def create_difference_tree(path1, path2):
             result[key] = {'type': ' ', 'value': file1[key]}
         elif isinstance(file1[key], dict) and isinstance(file2[key], dict):
             result[key] = {
-                'type': '+',
-                'value': create_difference_tree(file1[key], file2[key])
+                "type": "+",
+                "value": create_difference_tree(file1[key], file2[key]),
             }
         else:
             result[key] = {
-                'type': '-',
-                'old_value': file1[key],
-                'new_value': file2[key]
+                "type": "-",
+                "old_value": file1[key],
+                "new_value": file2[key],
             }
     return result
 

@@ -1,4 +1,4 @@
-from gendiff.scripts.gendiff_file import generate_diff
+from gendiff.scripts.gendiff import generate_diff
 
 
 result = "{\n\

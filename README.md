@@ -17,4 +17,4 @@
 <a href="https://asciinema.org/a/OfiBUlZDiVoI1L8cTaJWqrACh" target="_blank"><img src="https://asciinema.org/a/OfiBUlZDiVoI1L8cTaJWqrACh.svg" /></a>
 
 Аскинема 5 части проекта (Сравнение плоских файлов YAML):
-<a href="https://asciinema.org/a/LG7mjBnovSKFx5tKBB9b4Hc9E" target="_blank"><img src=" https://asciinema.org/a/LG7mjBnovSKFx5tKBB9b4Hc9E.svg" /></a>
+<a href="https://asciinema.org/a/LG7mjBnovSKFx5tKBB9b4Hc9E" target="_blank"><img src="https://asciinema.org/a/LG7mjBnovSKFx5tKBB9b4Hc9E.svg" /></a>

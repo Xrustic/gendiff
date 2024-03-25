@@ -20,8 +20,7 @@ jobs:
           python-version: ${{matrix.python-version}}
 
       - name: install-dependencies
-        run: pip install poetry && make install
-        run: pip install pyyaml
+        run: pip install poetry && pip install pyyaml && make install        
 
       - name: check linter
         run: make lint

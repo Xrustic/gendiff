@@ -3,8 +3,13 @@ import os
 
 
 def create_difference_tree(path1, path2):
-    file1 = get_file_data(path1)
-    file2 = get_file_data(path2)
+    if isinstance(path1, dict) and isinstance(path2, dict):
+        file1 = path1
+        file2 = path2
+    else:
+        file1 = get_file_data(path1)
+        file2 = get_file_data(path2)
+
     keys = sorted(file1.keys() | file2.keys())
     result = {}
     for key in keys:
@@ -17,7 +22,7 @@ def create_difference_tree(path1, path2):
 
         elif isinstance(file1[key], dict) and isinstance(file2[key], dict):
             result[key] = {
-                "type": "+",
+                "type": " ",
                 "value": create_difference_tree(file1[key], file2[key]),
             }
         elif file1[key] != file2[key]:
@@ -26,8 +31,8 @@ def create_difference_tree(path1, path2):
                 "old_value": file1[key],
                 "new_value": file2[key],
             }
-        else:
-            result[key] = {'type': ' ', 'value': file1[key]}
+        # elif file1[key] == file2[key]:
+        #     result[key] = {'type': ' ', 'value': file1[key]}
     return result
 
 

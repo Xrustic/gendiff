@@ -23,10 +23,10 @@ def main():
     parser()
 
 
-# if __name__ == '__main__':
-#     main()
 if __name__ == '__main__':
-    diff = generate_diff(
-        '/home/olga/Projects/python-project-50/tests/fixtures/file3.json',
-        '/home/olga/Projects/python-project-50/tests/fixtures/file4.json')
-    print(diff)
+    main()
+# if __name__ == '__main__':
+#     diff = generate_diff(
+#         '/home/olga/Projects/python-project-50/tests/fixtures/file3.json',
+#         '/home/olga/Projects/python-project-50/tests/fixtures/file4.json')
+#     print(diff)

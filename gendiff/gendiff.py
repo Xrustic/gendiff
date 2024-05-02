@@ -1,12 +1,12 @@
 #!/usr/bin/env python3
 import argparse
 from .diff_builder import create_difference_tree
-from .formatters.print_diff import print_diff
+from .formatters.stylish import stylish
 
 
 def generate_diff(path1, path2):
     diff_tree = create_difference_tree(path1, path2)
-    return str(print_diff(diff_tree))
+    return stylish(diff_tree)
 
 
 def parser():
@@ -25,8 +25,3 @@ def main():
 
 if __name__ == '__main__':
     main()
-# if __name__ == '__main__':
-#     diff = generate_diff(
-#         '/home/olga/Projects/python-project-50/tests/fixtures/file3.json',
-#         '/home/olga/Projects/python-project-50/tests/fixtures/file4.json')
-#     print(diff)

@@ -1,4 +1,5 @@
 from .parser import parse_data
+from .consts import NESTED, DELETED, ADDED, UNCHANGED, CHANGED
 import os
 
 
@@ -14,25 +15,23 @@ def create_difference_tree(path1, path2):
     result = {}
     for key in keys:
         if key not in file2:
-            result[key] = {'type': '-', 'value': file1[key]}
+            result[key] = {'type': DELETED, 'value': file1[key]}
         elif key not in file1:
-            result[key] = {'type': '+', 'value': file2[key]}
+            result[key] = {'type': ADDED, 'value': file2[key]}
         elif file1[key] == file2[key]:
-            result[key] = {'type': ' ', 'value': file1[key]}
+            result[key] = {'type': UNCHANGED, 'value': file1[key]}
 
         elif isinstance(file1[key], dict) and isinstance(file2[key], dict):
             result[key] = {
-                "type": " ",
+                "type": NESTED,
                 "value": create_difference_tree(file1[key], file2[key]),
             }
         elif file1[key] != file2[key]:
             result[key] = {
-                "type": "-",
+                "type": CHANGED,
                 "old_value": file1[key],
-                "new_value": file2[key],
+                "new_value": file2[key]
             }
-        # elif file1[key] == file2[key]:
-        #     result[key] = {'type': ' ', 'value': file1[key]}
     return result
 
 

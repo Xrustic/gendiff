@@ -18,3 +18,6 @@
 
 Аскинема 5 части проекта (Сравнение плоских файлов YAML):
 <a href="https://asciinema.org/a/LG7mjBnovSKFx5tKBB9b4Hc9E" target="_blank"><img src="https://asciinema.org/a/LG7mjBnovSKFx5tKBB9b4Hc9E.svg" /></a>
+
+Аскинема 6 части проекта (Рекурсивное сравнение):
+<a href="https://asciinema.org/a/z9Ovu1CkdcciN4wActSRUUGc4" target="_blank"><img src="https://asciinema.org/a/z9Ovu1CkdcciN4wActSRUUGc4.svg" /></a>

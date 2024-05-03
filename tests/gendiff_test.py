@@ -3,49 +3,52 @@ import os
 from gendiff.diff_builder import generate_diff
 
 
+TEST_FILES_DIR = os.path.join('tests', 'fixtures')
+
+
 @pytest.fixture
 def json_plain_1():
-    return os.path.join(generate_diff, 'file1_plain.json')
+    return os.path.join(TEST_FILES_DIR, 'file1.json')
 
 
 @pytest.fixture
 def json_plain_2():
-    return os.path.join(generate_diff, 'file2_plain.json')
+    return os.path.join(TEST_FILES_DIR, 'file2.json')
 
 
 @pytest.fixture
 def yaml_plain_1():
-    return os.path.join(generate_diff, 'file1_plain.yaml')
+    return os.path.join(TEST_FILES_DIR, 'file1.yaml')
 
 
 @pytest.fixture
 def yaml_plain_2():
-    return os.path.join(generate_diff, 'file2_plain.yaml')
+    return os.path.join(TEST_FILES_DIR, 'file2.yaml')
 
 
 @pytest.fixture
 def json_nested_1():
-    return os.path.join(generate_diff, 'file1_nested.json')
+    return os.path.join(TEST_FILES_DIR, 'file3.json')
 
 
 @pytest.fixture
 def json_nested_2():
-    return os.path.join(generate_diff, 'file2_nested.json')
+    return os.path.join(TEST_FILES_DIR, 'file4.json')
 
 
 @pytest.fixture
 def yaml_nested_1():
-    return os.path.join(generate_diff, 'file1_nested.yaml')
+    return os.path.join(TEST_FILES_DIR, 'file3.yaml')
 
 
 @pytest.fixture
 def yaml_nested_2():
-    return os.path.join(generate_diff, 'file2_nested.yaml')
+    return os.path.join(TEST_FILES_DIR, 'file4.yaml')
 
 
 @pytest.fixture
 def expected_diff_plain():
-    path = os.path.join(generate_diff, 'expected_plain.txt')
+    path = os.path.join(TEST_FILES_DIR, 'expected_plain.txt')
     with open(path) as file:
         expected = file.read()
     return expected
@@ -53,7 +56,7 @@ def expected_diff_plain():
 
 @pytest.fixture
 def expected_diff_nested():
-    path = os.path.join(generate_diff, 'expected_nested.txt')
+    path = os.path.join(TEST_FILES_DIR, 'expected_nested.txt')
     with open(path) as file:
         expected = file.read()
     return expected

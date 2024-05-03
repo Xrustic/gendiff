@@ -18,12 +18,12 @@ def json_plain_2():
 
 @pytest.fixture
 def yaml_plain_1():
-    return os.path.join(TEST_FILES_DIR, 'file1.yaml')
+    return os.path.join(TEST_FILES_DIR, 'file1.yml')
 
 
 @pytest.fixture
 def yaml_plain_2():
-    return os.path.join(TEST_FILES_DIR, 'file2.yaml')
+    return os.path.join(TEST_FILES_DIR, 'file2.yml')
 
 
 @pytest.fixture
@@ -38,12 +38,12 @@ def json_nested_2():
 
 @pytest.fixture
 def yaml_nested_1():
-    return os.path.join(TEST_FILES_DIR, 'file3.yaml')
+    return os.path.join(TEST_FILES_DIR, 'file3.yml')
 
 
 @pytest.fixture
 def yaml_nested_2():
-    return os.path.join(TEST_FILES_DIR, 'file4.yaml')
+    return os.path.join(TEST_FILES_DIR, 'file4.yml')
 
 
 @pytest.fixture

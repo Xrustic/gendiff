@@ -21,3 +21,6 @@
 
 Аскинема 6 части проекта (Рекурсивное сравнение):
 <a href="https://asciinema.org/a/z9Ovu1CkdcciN4wActSRUUGc4" target="_blank"><img src="https://asciinema.org/a/z9Ovu1CkdcciN4wActSRUUGc4.svg" /></a>
+
+Аскинема 7 части проекта (Плоский формат):
+<a href="https://asciinema.org/a/dyBfKBPBVODEZxPJzyvkyVRrq" target="_blank"><img src="https://asciinema.org/a/dyBfKBPBVODEZxPJzyvkyVRrq.svg" /></a>

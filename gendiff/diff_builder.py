@@ -2,21 +2,27 @@ from .consts import NESTED, DELETED, ADDED, UNCHANGED, CHANGED
 from .parser import parse_data
 from .gendiff import get_extension
 from .formatters.stylish import stylish
+from .formatters.plain import plain
 
 
-def generate_diff(path1, path2):
+def generate_diff(path1, path2, format):
     if isinstance(path1, dict) and isinstance(path2, dict):
         file1 = path1
         file2 = path2
     else:
         file1 = get_file_data(path1)
         file2 = get_file_data(path2)
-    diff_tree = create_difference_tree(file1, file2)
-    print(stylish(diff_tree))
-    return stylish(diff_tree)
+    diff_tree = create_diff_tree(file1, file2)
+# удалить принты
+    if format == 'stylish':
+        print(stylish(diff_tree))
+        return stylish(diff_tree)
+    elif format == 'plain':
+        print(plain(diff_tree))
+        return plain(diff_tree)
 
 
-def create_difference_tree(file1, file2):
+def create_diff_tree(file1, file2):
     keys = sorted(file1.keys() | file2.keys())
     result = {}
     for key in keys:
@@ -28,7 +34,7 @@ def create_difference_tree(file1, file2):
         elif isinstance(file1[key], dict) and isinstance(file2[key], dict):
             result[key] = {
                 "type": NESTED,
-                "value": create_difference_tree(file1[key], file2[key]),
+                "value": create_diff_tree(file1[key], file2[key]),
             }
         elif file1[key] != file2[key]:
             result[key] = {

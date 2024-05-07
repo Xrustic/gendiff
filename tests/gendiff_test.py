@@ -56,7 +56,7 @@ def diff_plain():
 
 @pytest.fixture
 def diff_nested():
-    path = os.path.join(TEST_FILES_DIR, 'expected.txt')
+    path = os.path.join(TEST_FILES_DIR, 'expected_nested.txt')
     with open(path) as file:
         expected = file.read()
     return expected
@@ -64,7 +64,7 @@ def diff_nested():
 
 @pytest.fixture
 def diff_plain_format():
-    path = os.path.join(TEST_FILES_DIR, 'expected.txt')
+    path = os.path.join(TEST_FILES_DIR, 'expected_plain_format.txt')
     with open(path) as file:
         expected = file.read()
     return expected

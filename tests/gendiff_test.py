@@ -63,7 +63,7 @@ def expected_diff_nested():
 
 
 @pytest.fixture
-def expected_diff_plain_form():
+def exp_diff_plain_form():
     path = os.path.join(TEST_FILES_DIR, 'expected_plain_format.txt')
     with open(path) as file:
         expected = file.read()

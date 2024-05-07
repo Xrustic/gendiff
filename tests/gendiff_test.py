@@ -47,54 +47,78 @@ def yaml_nested_2():
 
 
 @pytest.fixture
-def diff_plain():
-    path = os.path.join(TEST_FILES_DIR, 'expected.txt')
+def expected_diff_plain():
+    path = os.path.join(TEST_FILES_DIR, 'expected_plain.txt')
     with open(path) as file:
         expected = file.read()
     return expected
 
 
 @pytest.fixture
-def diff_nested():
+def expected_diff_nested():
     path = os.path.join(TEST_FILES_DIR, 'expected_nested.txt')
     with open(path) as file:
         expected = file.read()
     return expected
 
 
-@pytest.fixture
-def diff_plain_format():
-    path = os.path.join(TEST_FILES_DIR, 'expected_plain_format.txt')
-    with open(path) as file:
-        expected = file.read()
-    return expected
+def test_json(json_plain_1, json_plain_2, expected_diff_plain):
+    diff = generate_diff(json_plain_1, json_plain_2)
+    assert diff == expected_diff_plain
 
 
-def test_plain_json(json_plain_1, json_plain_2, diff_plain):
-    diff = generate_diff(json_plain_1, json_plain_2, format)
-    assert diff == diff_plain
+def test_yaml(yaml_plain_1, yaml_plain_2, expected_diff_plain):
+    diff = generate_diff(yaml_plain_1, yaml_plain_2)
+    assert diff == expected_diff_plain
 
 
-def test_plain_yaml(yaml_plain_1, yaml_plain_2, diff_plain):
-    diff = generate_diff(yaml_plain_1, yaml_plain_2, format)
-    assert diff == diff_plain
+def test_nested_json(json_nested_1, json_nested_2, expected_diff_nested):
+    diff = generate_diff(json_nested_1, json_nested_2)
+    assert diff == expected_diff_nested
 
 
-def test_nested_json(json_nested_1, json_nested_2, diff_nested):
-    diff = generate_diff(json_nested_1, json_nested_2, format)
-    assert diff == diff_nested
-
-
-def test_nested_yaml(yaml_nested_1, yaml_nested_2, diff_nested):
-    diff = generate_diff(yaml_nested_1, yaml_nested_2, format)
-    assert diff == diff_nested
-
-
-def test_plain_format_json(json_nested_1, json_nested_2, diff_plain_format):
-    diff = generate_diff(json_nested_1, json_nested_2, format)
-    assert diff == diff_plain_format
-
-
-def test_plain_format_yaml(yaml_nested_1, yaml_nested_2, diff_plain_format):
+def test_nested_yaml(yaml_nested_1, yaml_nested_2, expected_diff_nested):
     diff = generate_diff(yaml_nested_1, yaml_nested_2)
-    assert diff == diff_plain_format
+    assert diff == expected_diff_nested
+
+
+# stylish
+def test_json_stylish(json_plain_1, json_plain_2, expected_diff_plain):
+    diff = generate_diff(json_plain_1, json_plain_2, 'stylish')
+    assert diff == expected_diff_plain
+
+
+def test_yaml_stylish(yaml_plain_1, yaml_plain_2, expected_diff_plain):
+    diff = generate_diff(yaml_plain_1, yaml_plain_2, 'stylish')
+    assert diff == expected_diff_plain
+
+
+def test_nest_json_stylish(json_nested_1, json_nested_2, expected_diff_nested):
+    diff = generate_diff(json_nested_1, json_nested_2, 'stylish')
+    assert diff == expected_diff_nested
+
+
+def test_nest_yaml_stylish(yaml_nested_1, yaml_nested_2, expected_diff_nested):
+    diff = generate_diff(yaml_nested_1, yaml_nested_2, 'stylish')
+    assert diff == expected_diff_nested
+
+
+# plain
+def test_json_plain(json_plain_1, json_plain_2, expected_diff_plain):
+    diff = generate_diff(json_plain_1, json_plain_2, 'plain')
+    assert diff == expected_diff_plain
+
+
+def test_yaml_plain(yaml_plain_1, yaml_plain_2, expected_diff_plain):
+    diff = generate_diff(yaml_plain_1, yaml_plain_2, 'plain')
+    assert diff == expected_diff_plain
+
+
+def test_nest_json_plain(json_nested_1, json_nested_2, expected_diff_nested):
+    diff = generate_diff(json_nested_1, json_nested_2, 'plain')
+    assert diff == expected_diff_nested
+
+
+def test_nest_yaml_plain(yaml_nested_1, yaml_nested_2, expected_diff_nested):
+    diff = generate_diff(yaml_nested_1, yaml_nested_2, 'plain')
+    assert diff == expected_diff_nested

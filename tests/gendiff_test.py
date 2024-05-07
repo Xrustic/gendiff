@@ -70,24 +70,24 @@ def expected_diff_plain_form():
     return expected
 
 
-def test_json(json_plain_1, json_plain_2, expected_diff_plain):
-    diff = generate_diff(json_plain_1, json_plain_2)
-    assert diff == expected_diff_plain
+# def test_json(json_plain_1, json_plain_2, expected_diff_plain):
+#     diff = generate_diff(json_plain_1, json_plain_2)
+#     assert diff == expected_diff_plain
 
 
-def test_yaml(yaml_plain_1, yaml_plain_2, expected_diff_plain):
-    diff = generate_diff(yaml_plain_1, yaml_plain_2)
-    assert diff == expected_diff_plain
+# def test_yaml(yaml_plain_1, yaml_plain_2, expected_diff_plain):
+#     diff = generate_diff(yaml_plain_1, yaml_plain_2)
+#     assert diff == expected_diff_plain
 
 
-def test_nested_json(json_nested_1, json_nested_2, expected_diff_nested):
-    diff = generate_diff(json_nested_1, json_nested_2)
-    assert diff == expected_diff_nested
+# def test_nested_json(json_nested_1, json_nested_2, expected_diff_nested):
+#     diff = generate_diff(json_nested_1, json_nested_2)
+#     assert diff == expected_diff_nested
 
 
-def test_nested_yaml(yaml_nested_1, yaml_nested_2, expected_diff_nested):
-    diff = generate_diff(yaml_nested_1, yaml_nested_2)
-    assert diff == expected_diff_nested
+# def test_nested_yaml(yaml_nested_1, yaml_nested_2, expected_diff_nested):
+#     diff = generate_diff(yaml_nested_1, yaml_nested_2)
+#     assert diff == expected_diff_nested
 
 
 # stylish

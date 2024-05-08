@@ -138,12 +138,12 @@ def test_nest_yaml_plain(yaml_nested_1, yaml_nested_2, exp_diff_plain_form2):
 
 # json
 def test_json_json(json_plain_1, json_plain_2, exp_diff_json_form1):
-    diff = generate_diff(json_plain_1, json_plain_2, 'plain')
+    diff = generate_diff(json_plain_1, json_plain_2, 'json')
     assert diff == exp_diff_json_form1
 
 
 def test_yaml_json(yaml_plain_1, yaml_plain_2, exp_diff_json_form1):
-    diff = generate_diff(yaml_plain_1, yaml_plain_2, 'plain')
+    diff = generate_diff(yaml_plain_1, yaml_plain_2, 'json')
     assert diff == exp_diff_json_form1
 
 

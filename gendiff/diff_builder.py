@@ -3,6 +3,7 @@ from .parser import parse_data
 from .gendiff import get_extension
 from .formatters.stylish import stylish
 from .formatters.plain import plain
+from .formatters.json import json
 
 
 def generate_diff(path1, path2, format):
@@ -20,6 +21,9 @@ def generate_diff(path1, path2, format):
     elif format == 'plain':
         print(plain(diff_tree))
         return plain(diff_tree)
+    else:
+        print(json(diff_tree))
+        return json(diff_tree)
 
 
 def create_diff_tree(file1, file2):

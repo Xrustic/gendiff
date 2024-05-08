@@ -116,14 +116,14 @@ def test_nest_yaml_stylish(yaml_nested_1, yaml_nested_2, expected_diff_nested):
 
 
 # plain
-def test_json_plain(json_plain_1, json_plain_2, expected_diff_plain1):
+def test_json_plain(json_plain_1, json_plain_2, exp_diff_plain_form1):
     diff = generate_diff(json_plain_1, json_plain_2, 'plain')
-    assert diff == expected_diff_plain1
+    assert diff == exp_diff_plain_form1
 
 
-def test_yaml_plain(yaml_plain_1, yaml_plain_2, expected_diff_plain1):
+def test_yaml_plain(yaml_plain_1, yaml_plain_2, exp_diff_plain_form1):
     diff = generate_diff(yaml_plain_1, yaml_plain_2, 'plain')
-    assert diff == expected_diff_plain1
+    assert diff == exp_diff_plain_form1
 
 
 def test_nest_json_plain(json_nested_1, json_nested_2, exp_diff_plain_form2):

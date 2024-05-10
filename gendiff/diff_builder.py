@@ -1,12 +1,13 @@
 from .consts import NESTED, DELETED, ADDED, UNCHANGED, CHANGED
 from .parser import parse_data
 from .gendiff import get_extension
-from .formatters.stylish import stylish
-from .formatters.plain import plain
-from .formatters.json import json_form
+from .formatters.select_format import format
+# from .formatters.stylish import stylish
+# from .formatters.plain import plain
+# from .formatters.json import json_form
 
 
-def generate_diff(path1, path2, format):
+def generate_diff(path1, path2, formatters):
     if isinstance(path1, dict) and isinstance(path2, dict):
         file1 = path1
         file2 = path2
@@ -14,16 +15,17 @@ def generate_diff(path1, path2, format):
         file1 = get_file_data(path1)
         file2 = get_file_data(path2)
     diff_tree = create_diff_tree(file1, file2)
-# удалить принты
-    if format == 'stylish':
-        print(stylish(diff_tree))
-        return stylish(diff_tree)
-    elif format == 'plain':
-        print(plain(diff_tree))
-        return plain(diff_tree)
-    else:
-        print(json_form(diff_tree))
-        return json_form(diff_tree)
+    return format(diff_tree, formatters)
+# # удалить принты
+#     if format == 'stylish':
+#         print(stylish(diff_tree))
+#         return stylish(diff_tree)
+#     elif format == 'plain':
+#         print(plain(diff_tree))
+#         return plain(diff_tree)
+#     else:
+#         print(json_form(diff_tree))
+#         return json_form(diff_tree)
 
 
 def create_diff_tree(file1, file2):

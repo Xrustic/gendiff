@@ -4,7 +4,7 @@ from .gendiff import get_extension
 from .formatters.select_format import format
 
 
-def generate_diff(path1, path2, formatters):
+def generate_diff(path1, path2, formatters='stylish'):
     if isinstance(path1, dict) and isinstance(path2, dict):
         file1 = path1
         file2 = path2

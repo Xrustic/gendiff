@@ -1,6 +1,6 @@
 import pytest
 import os
-from gendiff.diff_builder import generate_diff
+from gendiff.gendiff import generate_diff
 
 
 TEST_FILES_DIR = os.path.join('tests', 'fixtures')

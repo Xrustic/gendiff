@@ -1,61 +1,49 @@
 import gendiff.consts
 
 
-def build_indent(depth):
-    return gendiff.consts.INDENT[:-2] + gendiff.consts.INDENT * depth
-
-
-def format_data_to_stylish(data, depth):
-    string_data = '\n'.join(data)
-    last_indent = build_indent(depth)[:-2]
-    return f'{string_data}\n{last_indent}'
-
-
-def put_into_braces(formatted_data):
-    return f'{{\n{formatted_data}}}'
-
-
-def to_str(value, depth):
-    if isinstance(value, bool):
-        return str(value).lower()
+def to_str(value, spaces_count=2):
     if value is None:
         return 'null'
-    if isinstance(value, dict):
+    elif isinstance(value, bool):
+        return str(value).lower()
+    elif isinstance(value, dict):
+        indent = ' ' * (spaces_count + 4)
         lines = []
         for key, val in value.items():
-            lines.append(f'{build_indent(depth)}  '
-                         f'{key}: {to_str(val, depth + 1)}')
-        lines_string = format_data_to_stylish(lines, depth)
-        return put_into_braces(lines_string)
-    return value
+            formatted_value = to_str(val, spaces_count + 4)
+            lines.append(f'{indent}  {key}: {formatted_value}')
+        formatted_string = '\n'.join(lines)
+        end_indent = ' ' * (spaces_count + 2)
+        return f'{{\n{formatted_string}\n{end_indent}}}    '
+    else:
+        return str(value)
 
 
-def stylish(data):
-    def _it_stylish(data, depth=0):
-        result = []
-        for key, value in data.items():
+def stylish(diff: dict):
+    def _iter(diff: dict, spaces_count=2):
+        lines = []
+        for key, value in diff.items():
+            indent = ' ' * spaces_count
             match value['type']:
-                case gendiff.consts.DELETED:
-                    result.append(f'{build_indent(depth)}- {key}: '
-                                  f'{to_str(value["value"], depth + 1)}')
-                case gendiff.consts.ADDED:
-                    result.append(f'{build_indent(depth)}+ {key}: '
-                                  f'{to_str(value["value"], depth + 1)}')
-                case gendiff.consts.CHANGED:
-                    result.append(f'{build_indent(depth)}- {key}: '
-                                  f'{to_str(value["old_value"], depth + 1)}')
-                    result.append(f'{build_indent(depth)}+ {key}: '
-                                  f'{to_str(value["new_value"], depth + 1)}')
                 case gendiff.consts.UNCHANGED:
-                    result.append(f'{build_indent(depth)}  {key}: '
-                                  f'{to_str(value["value"], depth + 1)}')
+                    current_value = to_str(value['value'], spaces_count)
+                    lines.append(f"{indent}  {key}: {current_value}")
+                case gendiff.consts.DELETED:
+                    current_value = to_str(value['value'], spaces_count)
+                    lines.append(f"{indent}- {key}: {current_value}")
+                case gendiff.consts.ADDED:
+                    current_value = to_str(value['value'], spaces_count)
+                    lines.append(f"{indent}+ {key}: {current_value}")
+                case gendiff.consts.CHANGED:
+                    current_value = to_str(value['old_value'], spaces_count)
+                    lines.append(f"{indent}- {key}: {current_value}")
+
+                    current_value = to_str(value['new_value'], spaces_count)
+                    lines.append(f"{indent}+ {key}: {current_value}")
                 case gendiff.consts.NESTED:
-                    result.append(f'{build_indent(depth)}  {key}: '
-                                  f'{_it_stylish(value["value"], depth + 1)}')
-                case _:
-                    raise ValueError(f'Unknown type: {value["type"]}')
-
-        result_string = format_data_to_stylish(result, depth)
-        return put_into_braces(result_string)
-
-    return _it_stylish(data)
+                    current_value = _iter(value['value'], spaces_count + 4)
+                    lines.append(f"{indent}  {key}: {current_value}")
+        formatted_string = '\n'.join(lines)
+        end_indent = ' ' * (spaces_count - 2)
+        return f'{{\n{formatted_string}\n{end_indent}}}'
+    return _iter(diff)

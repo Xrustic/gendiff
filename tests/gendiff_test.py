@@ -1,157 +1,59 @@
-import pytest
-import os
 from gendiff.gendiff import generate_diff
+import pytest
+# import os
 
 
-TEST_FILES_DIR = os.path.join('tests', 'fixtures')
+PATH_FILE1_YAML = 'tests/fixtures/file1.yml'
+PATH_FILE2_YAML = 'tests/fixtures/file2.yml'
+PATH_FILE3_YAML = 'tests/fixtures/file3.yml'
+PATH_FILE4_YAML = 'tests/fixtures/file4.yml'
+
+PATH_FILE1_JSON = 'tests/fixtures/file1.json'
+PATH_FILE2_JSON = 'tests/fixtures/file2.json'
+PATH_FILE3_JSON = 'tests/fixtures/file3.json'
+PATH_FILE4_JSON = 'tests/fixtures/file4.json'
+
+STYLISH_PATH_YAML = 'tests/fixtures/expected.txt'
+STYLISH_PATH_YAML_NEST = 'tests/fixtures/expected_nested.txt'
+PLAIN_PATH_YAML = 'tests/fixtures/expected_plain_format1.txt'
+PLAIN_PATH_YAML_NEST = 'tests/fixtures/expected_plain_format2.txt'
+JSON_PATH_FILES_YAML = 'tests/fixtures/expected_json_format1.txt'
+JSON_PATH_FILES_YAML_NEST = 'tests/fixtures/expected_json_format2.txt'
+
+STYLISH_PATH_JSON = 'tests/fixtures/expected.txt'
+STYLISH_PATH_JSON_NEST = 'tests/fixtures/expected_nested.txt'
+PLAIN_PATH_JSON = 'tests/fixtures/expected_plain_format1.txt'
+PLAIN_PATH_JSON_NEST = 'tests/fixtures/expected_plain_format2.txt'
+JSON_PATH_FILES_JSON = 'tests/fixtures/expected_json_format1.txt'
+JSON_PATH_FILES_JSON_NEST = 'tests/fixtures/expected_json_format2.txt'
 
 
-@pytest.fixture
-def json_plain_1():
-    return os.path.join(TEST_FILES_DIR, 'file1.json')
+@pytest.mark.parametrize(
+    'path_file1, path_file2, check_file_path, format',
+    [
+        (PATH_FILE1_YAML, PATH_FILE2_YAML, STYLISH_PATH_YAML, 'stylish'),
+        (PATH_FILE1_YAML, PATH_FILE2_YAML, PLAIN_PATH_YAML, 'plain'),
+        (PATH_FILE1_YAML, PATH_FILE2_YAML, JSON_PATH_FILES_YAML, 'json'),
+        (PATH_FILE1_JSON, PATH_FILE2_JSON, STYLISH_PATH_JSON, 'stylish'),
+        (PATH_FILE1_JSON, PATH_FILE2_JSON, PLAIN_PATH_JSON, 'plain'),
+        (PATH_FILE1_JSON, PATH_FILE2_JSON, JSON_PATH_FILES_JSON, 'json'),
 
+        (PATH_FILE3_YAML, PATH_FILE4_YAML, STYLISH_PATH_YAML_NEST, 'stylish'),
+        (PATH_FILE3_YAML, PATH_FILE4_YAML, PLAIN_PATH_YAML_NEST, 'plain'),
+        (PATH_FILE3_YAML, PATH_FILE4_YAML, JSON_PATH_FILES_YAML_NEST, 'json'),
+        (PATH_FILE3_JSON, PATH_FILE4_JSON, STYLISH_PATH_JSON_NEST, 'stylish'),
+        (PATH_FILE3_JSON, PATH_FILE4_JSON, PLAIN_PATH_JSON_NEST, 'plain'),
+        (PATH_FILE3_JSON, PATH_FILE4_JSON, JSON_PATH_FILES_JSON_NEST, 'json'),
+    ]
+)
+# def get_fixtures_path(file_name):
+#     current_dir = os.path.dirname(__file__)
+#     return os.path.join(current_dir, 'fixtures', file_name)
+# def get_data(expected_result):
+#     with open(get_fixtures_path(expected_result), "r") as correct:
+#         return correct.read()
+def gendiff_test(path_file1, path_file2, check_file_path, format):
+    result = generate_diff(path_file1, path_file2, format)
 
-@pytest.fixture
-def json_plain_2():
-    return os.path.join(TEST_FILES_DIR, 'file2.json')
-
-
-@pytest.fixture
-def yaml_plain_1():
-    return os.path.join(TEST_FILES_DIR, 'file1.yml')
-
-
-@pytest.fixture
-def yaml_plain_2():
-    return os.path.join(TEST_FILES_DIR, 'file2.yml')
-
-
-@pytest.fixture
-def json_nested_1():
-    return os.path.join(TEST_FILES_DIR, 'file3.json')
-
-
-@pytest.fixture
-def json_nested_2():
-    return os.path.join(TEST_FILES_DIR, 'file4.json')
-
-
-@pytest.fixture
-def yaml_nested_1():
-    return os.path.join(TEST_FILES_DIR, 'file3.yml')
-
-
-@pytest.fixture
-def yaml_nested_2():
-    return os.path.join(TEST_FILES_DIR, 'file4.yml')
-
-
-@pytest.fixture
-def expected_diff_plain():
-    path = os.path.join(TEST_FILES_DIR, 'expected.txt')
-    with open(path) as file:
-        expected = file.read()
-    return expected
-
-
-@pytest.fixture
-def expected_diff_nested():
-    path = os.path.join(TEST_FILES_DIR, 'expected_nested.txt')
-    with open(path) as file:
-        expected = file.read()
-    return expected
-
-
-@pytest.fixture
-def exp_diff_plain_form1():
-    path = os.path.join(TEST_FILES_DIR, 'expected_plain_format1.txt')
-    with open(path) as file:
-        expected = file.read()
-    return expected
-
-
-@pytest.fixture
-def exp_diff_plain_form2():
-    path = os.path.join(TEST_FILES_DIR, 'expected_plain_format2.txt')
-    with open(path) as file:
-        expected = file.read()
-    return expected
-
-
-@pytest.fixture
-def exp_diff_json_form1():
-    path = os.path.join(TEST_FILES_DIR, 'expected_json_format1.txt')
-    with open(path) as file:
-        expected = file.read()
-    return expected
-
-
-@pytest.fixture
-def exp_diff_json_form2():
-    path = os.path.join(TEST_FILES_DIR, 'expected_json_format2.txt')
-    with open(path) as file:
-        expected = file.read()
-    return expected
-
-
-# stylish
-def test_json_stylish(json_plain_1, json_plain_2, expected_diff_plain):
-    diff = generate_diff(json_plain_1, json_plain_2, 'stylish')
-    assert diff == expected_diff_plain
-
-
-def test_yaml_stylish(yaml_plain_1, yaml_plain_2, expected_diff_plain):
-    diff = generate_diff(yaml_plain_1, yaml_plain_2, 'stylish')
-    assert diff == expected_diff_plain
-
-
-def test_nest_json_stylish(json_nested_1, json_nested_2, expected_diff_nested):
-    diff = generate_diff(json_nested_1, json_nested_2, 'stylish')
-    assert diff == expected_diff_nested
-
-
-def test_nest_yaml_stylish(yaml_nested_1, yaml_nested_2, expected_diff_nested):
-    diff = generate_diff(yaml_nested_1, yaml_nested_2, 'stylish')
-    assert diff == expected_diff_nested
-
-
-# plain
-def test_json_plain(json_plain_1, json_plain_2, exp_diff_plain_form1):
-    diff = generate_diff(json_plain_1, json_plain_2, 'plain')
-    assert diff == exp_diff_plain_form1
-
-
-def test_yaml_plain(yaml_plain_1, yaml_plain_2, exp_diff_plain_form1):
-    diff = generate_diff(yaml_plain_1, yaml_plain_2, 'plain')
-    assert diff == exp_diff_plain_form1
-
-
-def test_nest_json_plain(json_nested_1, json_nested_2, exp_diff_plain_form2):
-    diff = generate_diff(json_nested_1, json_nested_2, 'plain')
-    assert diff == exp_diff_plain_form2
-
-
-def test_nest_yaml_plain(yaml_nested_1, yaml_nested_2, exp_diff_plain_form2):
-    diff = generate_diff(yaml_nested_1, yaml_nested_2, 'plain')
-    assert diff == exp_diff_plain_form2
-
-
-# json
-def test_json_json(json_plain_1, json_plain_2, exp_diff_json_form1):
-    diff = generate_diff(json_plain_1, json_plain_2, 'json')
-    assert diff == exp_diff_json_form1
-
-
-def test_yaml_json(yaml_plain_1, yaml_plain_2, exp_diff_json_form1):
-    diff = generate_diff(yaml_plain_1, yaml_plain_2, 'json')
-    assert diff == exp_diff_json_form1
-
-
-def test_nest_json_json(json_nested_1, json_nested_2, exp_diff_json_form2):
-    diff = generate_diff(json_nested_1, json_nested_2, 'json')
-    assert diff == exp_diff_json_form2
-
-
-def test_nest_yaml_json(yaml_nested_1, yaml_nested_2, exp_diff_json_form2):
-    diff = generate_diff(yaml_nested_1, yaml_nested_2, 'json')
-    assert diff == exp_diff_json_form2
+    with open(check_file_path) as check_file:
+        assert result == check_file.read()

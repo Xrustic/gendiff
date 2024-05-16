@@ -14,7 +14,7 @@ def to_str(value, spaces_count=2):
             lines.append(f'{indent}  {key}: {formatted_value}')
         formatted_string = '\n'.join(lines)
         end_indent = ' ' * (spaces_count + 2)
-        return f'{{\n{formatted_string}\n{end_indent}}}    '
+        return f'{{\n{formatted_string}\n{end_indent}}}'
     else:
         return str(value)
 

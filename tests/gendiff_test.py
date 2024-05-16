@@ -52,7 +52,7 @@ JSON_PATH_FILES_JSON_NEST = 'tests/fixtures/expected_json_format2.txt'
 # def get_data(expected_result):
 #     with open(get_fixtures_path(expected_result), "r") as correct:
 #         return correct.read()
-def gendiff_test(path_file1, path_file2, check_file_path, format):
+def test_gendiff(path_file1, path_file2, check_file_path, format):
     result = generate_diff(path_file1, path_file2, format)
 
     with open(check_file_path) as check_file:

@@ -50,12 +50,11 @@ def test_gendiff(path_file1, path_file2, check_file_path, format):
     result = generate_diff(path_file1, path_file2, format)
 
     with open(check_file_path) as check_file:
-        assert result == get_data(check_file)
-
+        assert result == check_file.read()
 
 # def get_fixtures_path(file_name):
 #     current_dir = os.path.dirname(__file__)
 #     return os.path.join(current_dir, 'fixtures', file_name)
-def get_data(expected_result):
-    with open(expected_result, "r") as correct:
-        return correct.read()
+# def get_data(expected_result):
+#     with open(get_fixtures_path(expected_result), "r") as correct:
+#         return correct.read()

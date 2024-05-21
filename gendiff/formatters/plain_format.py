@@ -1,4 +1,4 @@
-import gendiff.consts
+from gendiff.consts import TYPES
 
 
 def checking_value(value):
@@ -18,18 +18,18 @@ def plain(data):
         for key, value in data.items():
             print_path = f"{path}.{key}" if path else f'{key}'
             match value['type']:
-                case gendiff.consts.DELETED:
+                case TYPES.DELETED:
                     result.append(f"Property '{print_path}' was removed")
-                case gendiff.consts.ADDED:
+                case TYPES.ADDED:
                     result.append(f"Property '{print_path}' was added with "
                                   f"value: {checking_value(value['value'])}")
-                case gendiff.consts.CHANGED:
+                case TYPES.CHANGED:
                     result.append(f"Property '{print_path}' was updated. "
                                   f"From {checking_value(value['old_value'])} "
                                   f"to {checking_value(value['new_value'])}")
-                case gendiff.consts.NESTED:
+                case TYPES.NESTED:
                     result.extend(_iter_plain(value['value'], print_path))
-                case gendiff.consts.UNCHANGED:
+                case TYPES.UNCHANGED:
                     continue
                 case _:
                     raise ValueError(f'Unknown type: {value["type"]}')

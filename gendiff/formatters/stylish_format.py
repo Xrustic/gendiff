@@ -1,4 +1,4 @@
-import gendiff.consts
+from gendiff.consts import TYPES
 
 
 def to_str(value, spaces_count=2):
@@ -25,22 +25,22 @@ def stylish(diff: dict):
         for key, value in diff.items():
             indent = ' ' * spaces_count
             match value['type']:
-                case gendiff.consts.UNCHANGED:
+                case TYPES.UNCHANGED:
                     current_value = to_str(value['value'], spaces_count)
                     lines.append(f"{indent}  {key}: {current_value}")
-                case gendiff.consts.DELETED:
+                case TYPES.DELETED:
                     current_value = to_str(value['value'], spaces_count)
                     lines.append(f"{indent}- {key}: {current_value}")
-                case gendiff.consts.ADDED:
+                case TYPES.ADDED:
                     current_value = to_str(value['value'], spaces_count)
                     lines.append(f"{indent}+ {key}: {current_value}")
-                case gendiff.consts.CHANGED:
+                case TYPES.CHANGED:
                     current_value = to_str(value['old_value'], spaces_count)
                     lines.append(f"{indent}- {key}: {current_value}")
 
                     current_value = to_str(value['new_value'], spaces_count)
                     lines.append(f"{indent}+ {key}: {current_value}")
-                case gendiff.consts.NESTED:
+                case TYPES.NESTED:
                     current_value = _iter(value['value'], spaces_count + 4)
                     lines.append(f"{indent}  {key}: {current_value}")
         formatted_string = '\n'.join(lines)

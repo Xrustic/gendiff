@@ -3,28 +3,28 @@
         "type": "nested",
         "value": {
             "follow": {
-                "type": "+",
+                "type": "added",
                 "value": false
             },
             "setting1": {
-                "type": " ",
+                "type": "unchanged",
                 "value": "Value 1"
             },
             "setting2": {
-                "type": "-",
+                "type": "deleted",
                 "value": 200
             },
             "setting3": {
-                "type": "-+",
+                "type": "changed",
                 "old_value": true,
                 "new_value": null
             },
             "setting4": {
-                "type": "+",
+                "type": "added",
                 "value": "blah blah"
             },
             "setting5": {
-                "type": "+",
+                "type": "added",
                 "value": {
                     "key5": "value5"
                 }
@@ -36,18 +36,18 @@
                         "type": "nested",
                         "value": {
                             "wow": {
-                                "type": "-+",
+                                "type": "changed",
                                 "old_value": "",
                                 "new_value": "so much"
                             }
                         }
                     },
                     "key": {
-                        "type": " ",
+                        "type": "unchanged",
                         "value": "value"
                     },
                     "ops": {
-                        "type": "+",
+                        "type": "added",
                         "value": "vops"
                     }
                 }
@@ -58,16 +58,16 @@
         "type": "nested",
         "value": {
             "baz": {
-                "type": "-+",
+                "type": "changed",
                 "old_value": "bas",
                 "new_value": "bars"
             },
             "foo": {
-                "type": " ",
+                "type": "unchanged",
                 "value": "bar"
             },
             "nest": {
-                "type": "-+",
+                "type": "changed",
                 "old_value": {
                     "key": "value"
                 },
@@ -76,7 +76,7 @@
         }
     },
     "group2": {
-        "type": "-",
+        "type": "deleted",
         "value": {
             "abc": 12345,
             "deep": {
@@ -85,7 +85,7 @@
         }
     },
     "group3": {
-        "type": "+",
+        "type": "added",
         "value": {
             "deep": {
                 "id": {

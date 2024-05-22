@@ -21,7 +21,7 @@ def test_gendiff(file1, file2):
     path1 = get_fixtures_path(file1)
     path2 = get_fixtures_path(file2)
 
-    # assert gen_diff(path1, path2, 'stylish') == get_data('exp_stylish.txt')
-    # assert gen_diff(path1, path2, 'plain') == get_data('exp_plain.txt')
+    assert gen_diff(path1, path2, 'stylish') == get_data('exp_stylish.txt')
+    assert gen_diff(path1, path2, 'plain') == get_data('exp_plain.txt')
     assert gen_diff(path1, path2, 'json') == get_data('exp_json.txt')
-    # assert gen_diff(path1, path2) == get_data('exp_stylish.txt')
+    assert gen_diff(path1, path2) == get_data('exp_stylish.txt')

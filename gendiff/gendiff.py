@@ -9,7 +9,7 @@ def get_extension(file_path):
     return extension[1:]
 
 
-def generate_diff(path1, path2, formatters='stylish'):
+def gen_diff(path1, path2, formatters='stylish'):
     # if isinstance(path1, dict) and isinstance(path2, dict):
     #     file1 = path1
     #     file2 = path2

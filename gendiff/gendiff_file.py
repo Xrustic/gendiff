@@ -1,7 +1,7 @@
 import os
-from .parser import parse_data
-from .formatters.__init__ import format
-from .diff_builder import create_diff_tree
+from gendiff.parser import parse_data
+from gendiff.formatters.__init__ import format
+from gendiff.diff_builder import create_diff_tree
 
 
 def get_extension(file_path):
@@ -10,10 +10,6 @@ def get_extension(file_path):
 
 
 def gen_diff(path1, path2, formatters='stylish'):
-    # if isinstance(path1, dict) and isinstance(path2, dict):
-    #     file1 = path1
-    #     file2 = path2
-    # else:
     file1 = get_file_data(path1)
     file2 = get_file_data(path2)
     diff_tree = create_diff_tree(file1, file2)

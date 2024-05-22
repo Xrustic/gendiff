@@ -1,5 +1,4 @@
 import argparse
-# from gendiff.gendiff import generate_diff
 
 
 def parser():
@@ -12,4 +11,3 @@ def parser():
                         choices=['stylish', 'plain', 'json'],
                         help='set format of output')
     return parser.parse_args()
-    # generate_diff(args.first_file, args.second_file, args.format)

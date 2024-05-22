@@ -14,9 +14,9 @@ def get_dt(exp_result):
 
 
 @pytest.mark.parametrize("file1, file2", [
-        ('file1.json', 'file2.json'),
-        ('file1.yml', 'file2.yml')
-    ])
+    ('file1.json', 'file2.json'),
+    ('file1.yml', 'file2.yml')
+])
 def test_gendiff(file1, file2):
     path1 = get_fixtures_path(file1)
     path2 = get_fixtures_path(file2)

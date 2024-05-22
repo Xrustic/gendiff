@@ -1,4 +1,4 @@
-from gendiff.gendiff_file import gen_diff
+from gendiff.gendiff_file import generate_diff
 
 
-__all__ = ('gen_diff',)
+__all__ = ('generate_diff',)

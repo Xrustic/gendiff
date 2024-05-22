@@ -17,7 +17,7 @@ def gen_diff(path1, path2, formatters='stylish'):
     file1 = get_file_data(path1)
     file2 = get_file_data(path2)
     diff_tree = create_diff_tree(file1, file2)
-    format(diff_tree, formatters)
+    return format(diff_tree, formatters)
 
 
 def get_file_data(file_path):

@@ -9,5 +9,4 @@ def parse_data(data, extension):
         case 'yml' | 'yaml':
             return yaml.safe_load(data)
         case _:
-            print(ValueError(f'Unsupported extension: {extension}'))
             ValueError(f'Unsupported extension: {extension}')

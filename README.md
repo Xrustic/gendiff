@@ -1,9 +1,6 @@
 ### Hexlet tests and linter status
 [![Actions Status](https://github.com/Xrustic/python-project-50/actions/workflows/hexlet-check.yml/badge.svg)](https://github.com/Xrustic/python-project-50/actions)
 
-### Build Status
-[![Build Status](https://github.com/Xrustic/python-project-50/actions/workflows/hexlet-check.yml/badge.svg?branch=master)](https://github.com/Xrustic/python-project-50/actions)
-
 ### Github Actions
 [![hexlet-check](https://github.com/Xrustic/python-project-50/actions/workflows/hexlet-check.yml/badge.svg)](https://github.com/Xrustic/python-project-50/actions/workflows/hexlet-check.yml)
 
@@ -43,67 +40,10 @@ pipx install poetry
 ```
 
 ### Как использовать?
-
-#### Если вам необходимо сравнить два файла без вложенностей, то:
-Используйте команду **gendiff tests/fixtures/file1.json tests/fixtures/file2.json**, чтобы сравнить файлы, формата json.
-Или используйте команду **gendiff tests/fixtures/file1.yml tests/fixtures/file2.yml**, если эти файлы имеют расширение yml.
-
-Также, если вам необходимо выбрать, в каком формате вы хотели бы получить результат.
-- Если вам необходим формат stylish, то используйте команду
+Чтобы получить сравнение файлов, вам необходима использовать эту команду, выбрав подходящие файлы и формат для вас:
 ```
-gendiff tests/fixtures/file1.json tests/fixtures/file2.json -f stylish
+gendiff <file_name_1> <file_name_2>  -f <stylish/plain/json>
 ```
-или
-```
-gendiff tests/fixtures/file1.yml tests/fixtures/file2.yml -f stylish
-```
-- Если вам необходим формат plain (строчный), то используйте команду
-```
-gendiff tests/fixtures/file1.json tests/fixtures/file2.json -f plain
-```
-или
-```
-gendiff tests/fixtures/file1.yml tests/fixtures/file2.yml -f plain
-```
-- Если вам необходим формат json (в виде json файла), то используйте команду
-```
-gendiff tests/fixtures/file1.json tests/fixtures/file2.json -f json
-```
-или
-```
-gendiff tests/fixtures/file1.yml tests/fixtures/file2.yml -f json
-```
-
-#### Если вам необходимо сравнить два файла со вложенностью:
-Используйте команду **gendiff tests/fixtures/file3.json tests/fixtures/file4.json**, чтобы сравнить файлы, формата json.
-Или используйте команду **gendiff tests/fixtures/file3.yml tests/fixtures/file4.yml**, если эти файлы имеют расширение yml.
-
-Также, если вам необходимо выбрать, в каком формате вы хотели бы получить результат.
-- Если вам необходим формат stylish, то используйте команду
-```
-gendiff tests/fixtures/file3.json tests/fixtures/file4.json -f stylish
-```
-или
-```
-gendiff tests/fixtures/file3.yml tests/fixtures/file4.yml -f stylish
-```
-- Если вам необходим формат plain (строчный), то используйте команду
-```
-gendiff tests/fixtures/file3.json tests/fixtures/file4.json -f plain
-```
-или
-```
-gendiff tests/fixtures/file3.yml tests/fixtures/file4.yml -f plain
-```
-- Если вам необходим формат json (в виде json файла), то используйте команду
-```
-gendiff tests/fixtures/file3.json tests/fixtures/file4.json -f json
-```
-или
-```
-gendiff tests/fixtures/file3.yml tests/fixtures/file4.yml -f json
-```
-
 
 
 ### Установка и билд

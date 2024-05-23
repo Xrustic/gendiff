@@ -14,5 +14,5 @@ def format(diff_tree, formatter):
         case 'json':
             print(json_form(diff_tree))
             return json_form(diff_tree)
-        # case _:
-        #     ValueError(f'Unsupported format: {formatter}')
+        case _:
+            ValueError(f'Unsupported format: {formatter}')

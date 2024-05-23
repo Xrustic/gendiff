@@ -1,5 +1,6 @@
 import os
 from gendiff.parser import parse_data
+from gendiff.formatters.__init__ import format
 from gendiff.diff_builder import create_diff_tree
 
 

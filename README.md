@@ -15,7 +15,7 @@
 
 Чтобы установить и использовать мой проект, вам необходимо использовать эту команду:
 ```
-python3 -m pip install --user git+https://github.com/Xrustic/python-project-50.git
+python3 -m pip install --user git+https://github.com/Xrustic/gendiff.git
 ```
 
 ## Технологии
